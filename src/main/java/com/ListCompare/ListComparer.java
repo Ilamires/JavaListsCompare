@@ -6,18 +6,23 @@ import java.util.List;
 
 
 public class ListComparer {
-    public Pair<Long, Long> addCompare(int elements_count) {
-        LinkedList<Integer> linked_list = new LinkedList<>();
-        ArrayList<Integer> array_list = new ArrayList<>();
-        long startTime = System.nanoTime();
-        addElements(array_list, 1000000);
-        long endTime = System.nanoTime();
-        long linked_list_duration = (endTime - startTime);
+    public Pair<Long, Long> addCompare(int elementsCount) {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        long startTime;
+        long endTime;
+
         startTime = System.nanoTime();
-        addElements(array_list, 1000000);
+        addElements(arrayList, elementsCount);
         endTime = System.nanoTime();
-        long array_list_duration = (endTime - startTime);
-        return new Pair<>(linked_list_duration, array_list_duration);
+        long arrayListDuration = (endTime - startTime);
+
+        startTime = System.nanoTime();
+        addElements(linkedList, elementsCount);
+        endTime = System.nanoTime();
+        long linkedListDuration = (endTime - startTime);
+
+        return new Pair<>(arrayListDuration, linkedListDuration);
     }
 
     public void addElements(List<Integer> list, int elements_count) {

@@ -25,9 +25,36 @@ public class ListComparer {
         return new Pair<>(arrayListDuration, linkedListDuration);
     }
 
-    public void addElements(List<Integer> list, int elements_count) {
-        for (int i = 0; i < elements_count; ++i) {
+    public Pair<Long, Long> delCompare(int elementsCount) {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        addElements(arrayList, elementsCount);
+        addElements(linkedList, elementsCount);
+        long startTime;
+        long endTime;
+
+        startTime = System.nanoTime();
+        delElements(arrayList, elementsCount);
+        endTime = System.nanoTime();
+        long arrayListDuration = (endTime - startTime);
+
+        startTime = System.nanoTime();
+        delElements(linkedList, elementsCount);
+        endTime = System.nanoTime();
+        long linkedListDuration = (endTime - startTime);
+
+        return new Pair<>(arrayListDuration, linkedListDuration);
+    }
+
+    private void addElements(List<Integer> list, int elementsCount) {
+        for (int i = 0; i < elementsCount; ++i) {
             list.add(i);
+        }
+    }
+
+    private void delElements(List<Integer> list, int elementsCount) {
+        for (int i = 0; i < elementsCount; ++i) {
+            list.removeFirst();
         }
     }
 }

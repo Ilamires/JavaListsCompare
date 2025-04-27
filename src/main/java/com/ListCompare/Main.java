@@ -1,12 +1,27 @@
 package com.ListCompare;
 
+/**
+ * Main application class for comparing list performance.
+ */
 public class Main {
+    /**
+     * Application entry point.
+     *
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
         ListComparer listComparer = new ListComparer();
         printCompareTable(listComparer.addCompare(10000000),
                 listComparer.delCompare(100000), listComparer.getCompare(100000));
     }
 
+    /**
+     * Prints comparison results table for list operations.
+     *
+     * @param addCompareResult addition operation comparison results
+     * @param delCompareResult removal operation comparison results
+     * @param getCompareResult access operation comparison results
+     */
     public static void printCompareTable(Pair<Long, Long> addCompareResult, Pair<Long, Long> delCompareResult,
                                          Pair<Long, Long> getCompareResult) {
         String arrayListAddResult = Double.toString(addCompareResult.firstValue() / 1000000.0);
@@ -60,6 +75,12 @@ public class Main {
         System.out.println(horizontalLine);
     }
 
+    /**
+     * Prints a formatted table row.
+     *
+     * @param row row data
+     * @param columnWidths column widths
+     */
     private static void printTableRow(String[] row, int[] columnWidths) {
         System.out.printf("| %-" + columnWidths[0] + "s | %-" + columnWidths[1] +
                         "s | %-" + columnWidths[2] + "s | %-" + columnWidths[3] + "s |%n",
